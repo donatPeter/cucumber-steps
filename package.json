@@ -2,21 +2,21 @@
   "name": "cucumber-steps",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/api.js",
   "scripts": {
+    "build": "rm -f -R build && tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@types/cucumber": "^4.0.4",
-    "@types/selenium-webdriver": "^3.0.10",
     "cucumber": "^5.0.1",
     "selenium-webdriver": "^4.0.0-alpha.1"
   },
   "devDependencies": {
-    "tslint": "^5.11.0",
-    "typescript": "^3.0.3"
+    "eslint": "^5.6.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0"
   }
 }
