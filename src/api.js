@@ -1,5 +1,5 @@
 const webdriver = require('selenium-webdriver');
-const steps = require('./step_definitions/actions');
+const steps = require('./step_definitions/index');
 
 function gherkin(cucumber) {
   steps.forEach(([pattern, fn]) => {
