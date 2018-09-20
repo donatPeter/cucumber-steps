@@ -1,5 +1,5 @@
 const open = async function (url) {
-  this.driver.get(url);
+  this.world.driver.get(url);
 };
 
 module.exports = [

@@ -1,7 +1,7 @@
 const { expect } = require('chai');
 
 const isEqual = async function (url) {
-  const currentURL = await this.driver.getCurrentUrl();
+  const currentURL = await this.world.driver.getCurrentUrl();
   expect(currentURL).to.equal(url);
 };
 

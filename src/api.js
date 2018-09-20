@@ -16,7 +16,7 @@ World.prototype.hook = function (cucumber) {
   cucumber.BeforeAll(() => self.setup());
   cucumber.AfterAll(() => self.cleanup());
   cucumber.setWorldConstructor(function () {
-    this.mink = self;
+    this.world = self;
   });
 };
 
