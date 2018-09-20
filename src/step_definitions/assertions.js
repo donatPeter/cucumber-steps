@@ -5,8 +5,6 @@ const isEqual = async (url) => {
   expect(currentURL).to.equal(url);
 };
 
-const arr = [
+module.exports = [
   [/I should be on "([^"]*)"/, isEqual],
 ];
-
-export default arr;

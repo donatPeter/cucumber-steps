@@ -1,7 +1,5 @@
 const click = async id => this.driver.click(id);
 
-const arr = [
+module.exports = [
   [/I click on the HTML element with the ID "([^"]*)"/, click],
 ];
-
-export default arr;

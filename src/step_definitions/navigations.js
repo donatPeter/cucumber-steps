@@ -1,7 +1,5 @@
 const open = async url => this.driver.get(url);
 
-const arr = [
+module.exports = [
   [/Open the "([^"]*)"/, open],
 ];
-
-export default arr;
