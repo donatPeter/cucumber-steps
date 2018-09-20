@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "chai": "^4.1.2",
     "cucumber": "^5.0.1",
     "selenium-webdriver": "^4.0.0-alpha.1"
   },

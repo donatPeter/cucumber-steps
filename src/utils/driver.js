@@ -1,4 +1,4 @@
-const webdriver = require('../../../../../Library/Caches/typescript/2.9/node_modules/@types/selenium-webdriver');
+const webdriver = require('selenium-webdriver');
 
 export default class DriverFactory {
   constructor() {
