@@ -1,4 +1,4 @@
-const webdriver = require('selenium-webdriver');
+const { Builder } = require('selenium-webdriver');
 const steps = require('./step_definitions/index');
 
 function gherkin(cucumber) {
@@ -21,9 +21,7 @@ World.prototype.hook = function (cucumber) {
 };
 
 World.prototype.setup = async function () {
-  this.driver = new webdriver.Builder()
-    .forBrowser('chrome')
-    .build();
+  this.driver = await new Builder().forBrowser('chrome').build();
 };
 
 World.prototype.cleanup = async function () {
