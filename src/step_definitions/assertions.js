@@ -1,6 +1,6 @@
 const { expect } = require('chai');
 
-const isEqual = async (url) => {
+const isEqual = async function (url) {
   const currentURL = await this.driver.getCurrentUrl();
   expect(currentURL).to.equal(url);
 };
