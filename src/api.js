@@ -11,26 +11,22 @@ function World(config = {}) {
   this.config = config;
 }
 
-World.prototype.hook = (cucumber) => {
+World.prototype.hook = function (cucumber) {
   const self = this;
-  cucumber.BeforeAll(() => this.setup());
-  cucumber.AfterAll(() => this.cleanup());
-  cucumber.setWorldConstructor(() => {
-    this.world = self;
+  cucumber.BeforeAll(() => self.setup());
+  cucumber.AfterAll(() => self.cleanup());
+  cucumber.setWorldConstructor(function () {
+    this.mink = self;
   });
 };
 
-World.prototype.setup = async () => {
+World.prototype.setup = async function () {
   this.driver = new webdriver.Builder()
     .forBrowser('chrome')
     .build();
 };
 
-World.prototype.cleanup = async () => {
-  await this.driver.quit();
-};
-
-World.prototype.cleanup = async () => {
+World.prototype.cleanup = async function () {
   await this.driver.quit();
 };
 
