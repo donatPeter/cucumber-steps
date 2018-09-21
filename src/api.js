@@ -7,26 +7,28 @@ function gherkin(cucumber) {
   });
 }
 
-function World(config = {}) {
-  this.config = config;
+class World {
+  constructor(config = {}) {
+    this.config = config;
+  }
+
+  hook(cucumber) {
+    const self = this;
+    cucumber.BeforeAll(() => self.setup());
+    cucumber.AfterAll(() => self.cleanup());
+    cucumber.setWorldConstructor(function () {
+      this.world = self;
+    });
+  }
+
+  async setup() {
+    this.driver = await new Builder().forBrowser('chrome').build();
+  }
+
+  async cleanup() {
+    await this.driver.quit();
+  }
 }
-
-World.prototype.hook = function (cucumber) {
-  const self = this;
-  cucumber.BeforeAll(() => self.setup());
-  cucumber.AfterAll(() => self.cleanup());
-  cucumber.setWorldConstructor(function () {
-    this.world = self;
-  });
-};
-
-World.prototype.setup = async function () {
-  this.driver = await new Builder().forBrowser('chrome').build();
-};
-
-World.prototype.cleanup = async function () {
-  await this.driver.quit();
-};
 
 module.exports.World = World;
 module.exports.gherkin = gherkin;
