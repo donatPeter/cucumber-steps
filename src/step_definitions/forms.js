@@ -1,6 +1,6 @@
 class Forms {
   static async filloutFormFields(hashDataTable) {
-    console.log(hashDataTable);
+    await this.world.driver.filloutFormFields(hashDataTable);
   }
 }
 

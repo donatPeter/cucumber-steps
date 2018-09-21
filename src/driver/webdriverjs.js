@@ -65,6 +65,15 @@ class Driver {
     const element = await this.driver.wait(until.elementLocated(By.id(id)), 10000, 'Could not locate the child element within the time specified');
     return element.sendKeys(key);
   }
+
+  async filloutFormFields(hash) {
+    const promises = [];
+    hash.raw().forEach(async ([field, value]) => {
+      const arr = field.split('=');
+      promises.push(this.driver.wait(until.elementLocated(By.id(arr[1])), 10000, 'Could not locate the child element within the time specified').sendKeys(value));
+    });
+    return Promise.all(promises);
+  }
 }
 
 module.exports = Driver;
