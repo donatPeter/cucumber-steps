@@ -1,5 +1,5 @@
-const { Builder } = require('selenium-webdriver');
 const steps = require('./step_definitions/index');
+const Driver = require('./driver/webdriverjs');
 
 class World {
   constructor(config = {}) {
@@ -22,7 +22,7 @@ class World {
   }
 
   async setup() {
-    this.driver = await new Builder().forBrowser('chrome').build();
+    this.driver = new Driver().get();
   }
 
   async cleanup() {
