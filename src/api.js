@@ -22,7 +22,8 @@ class World {
   }
 
   async setup() {
-    this.driver = new Driver().get();
+    this.Driver = new Driver();
+    this.driver = this.Driver.get();
   }
 
   async cleanup() {
