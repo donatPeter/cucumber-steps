@@ -28,6 +28,15 @@ class Driver {
   async getURL(url) {
     return this.driver.get(url);
   }
+
+  async wait(sec) {
+    const milliSec = sec * 1000;
+    return this.driver.sleep(milliSec);
+  }
+
+  async screenshot() {
+    await this.driver.screenshot();
+  }
 }
 
 module.exports = Driver;
