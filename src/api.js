@@ -22,12 +22,11 @@ class World {
   }
 
   async setup() {
-    this.Driver = new Driver();
-    this.driver = this.Driver.get();
+    this.driver = new Driver();
   }
 
   async cleanup() {
-    await this.driver.quit();
+    await this.driver.quitBrowser();
   }
 }
 

@@ -1,6 +1,6 @@
 class Actions {
   static async click(id) {
-    await this.world.Driver.clickOn(id);
+    await this.world.driver.clickOn(id);
   }
 }
 

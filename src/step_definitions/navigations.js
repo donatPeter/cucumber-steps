@@ -1,6 +1,6 @@
 class Navigations {
   static async open(url) {
-    this.world.driver.get(url);
+    this.world.driver.getURL(url);
   }
 }
 
