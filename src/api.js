@@ -1,15 +1,15 @@
 const { Builder } = require('selenium-webdriver');
 const steps = require('./step_definitions/index');
 
-function gherkin(cucumber) {
-  steps.forEach(([pattern, fn]) => {
-    cucumber.defineStep(pattern, fn);
-  });
-}
-
 class World {
   constructor(config = {}) {
     this.config = config;
+  }
+
+  static gherkin(cucumber) {
+    steps.forEach(([pattern, fn]) => {
+      cucumber.defineStep(pattern, fn);
+    });
   }
 
   hook(cucumber) {
@@ -31,4 +31,4 @@ class World {
 }
 
 module.exports.World = World;
-module.exports.gherkin = gherkin;
+module.exports.gherkin = World.gherkin;
