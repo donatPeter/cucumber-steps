@@ -18,7 +18,7 @@ class Driver {
   }
 
   async getCurrentURL() {
-    return this.world.driver.getCurrentUrl();
+    return this.driver.getCurrentUrl();
   }
 
   async quitBrowser() {
