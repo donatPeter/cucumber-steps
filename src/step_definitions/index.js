@@ -1,11 +1,13 @@
 const actions = require('./actions');
-const assertions = require('./assertions');
+const URLAssertions = require('./url-assertions');
+const forms = require('./forms');
 const navigations = require('./navigations');
 const utilities = require('./utilities');
 
 module.exports = [
   ...actions,
-  ...assertions,
+  ...URLAssertions,
   ...navigations,
   ...utilities,
+  ...forms,
 ];

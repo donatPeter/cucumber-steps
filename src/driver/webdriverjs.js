@@ -47,6 +47,24 @@ class Driver {
       fs.writeFileSync(targetPath + fileName, pic, 'base64');
     }
   }
+
+  async refresh() {
+    return this.driver.navigate().refresh();
+  }
+
+  async moveBack() {
+    return this.driver.navigate().back();
+  }
+
+  async hoverOver(id) {
+    const element = await this.driver.wait(until.elementLocated(By.id(id)), 10000, 'Could not locate the child element within the time specified');
+    return this.driver.actions().mouseMove(element).perform();
+  }
+
+  async sendKey(id, key) {
+    const element = await this.driver.wait(until.elementLocated(By.id(id)), 10000, 'Could not locate the child element within the time specified');
+    return element.sendKeys(key);
+  }
 }
 
 module.exports = Driver;
