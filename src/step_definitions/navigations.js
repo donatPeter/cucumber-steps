@@ -1,7 +1,9 @@
-const open = async function (url) {
-  this.world.driver.get(url);
-};
+class Navigations {
+  static async open(url) {
+    this.world.driver.get(url);
+  }
+}
 
 module.exports = [
-  [/Open the "([^"]*)"/, open],
+  [/Open the "([^"]*)"/, Navigations.open],
 ];
