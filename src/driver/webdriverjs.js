@@ -1,5 +1,6 @@
 const webdriver = require('selenium-webdriver');
 const { By, until } = require('selenium-webdriver');
+const fs = require('fs');
 
 class Driver {
   constructor() {
@@ -35,7 +36,16 @@ class Driver {
   }
 
   async screenshot() {
-    await this.driver.takeScreenshot();
+    const pic = await this.driver.takeScreenshot();
+    const currentPath = process.cwd();
+    const targetPath = `${currentPath}/screenshots/`;
+    const fileName = `${new Date().toISOString()}.png`;
+    if (!fs.existsSync(targetPath)) {
+      fs.mkdirSync(targetPath);
+      fs.writeFileSync(targetPath + fileName, pic, 'base64');
+    } else {
+      fs.writeFileSync(targetPath + fileName, pic, 'base64');
+    }
   }
 }
 
