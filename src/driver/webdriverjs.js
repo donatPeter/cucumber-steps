@@ -3,9 +3,9 @@ const { By, until } = require('selenium-webdriver');
 const fs = require('fs');
 
 class Driver {
-  constructor() {
+  constructor(browser) {
     this.driver = new webdriver.Builder()
-      .forBrowser('chrome')
+      .forBrowser(browser)
       .build();
   }
 

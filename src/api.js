@@ -2,7 +2,9 @@ const steps = require('./step_definitions/index');
 const Driver = require('./driver/webdriverjs');
 
 class World {
-  constructor(config = {}) {
+  constructor(config = {
+    browser: 'chrome',
+  }) {
     this.config = config;
   }
 
@@ -22,7 +24,7 @@ class World {
   }
 
   async setup() {
-    this.driver = new Driver();
+    this.driver = new Driver(this.config.browser);
   }
 
   async cleanup() {
