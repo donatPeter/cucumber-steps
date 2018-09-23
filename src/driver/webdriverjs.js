@@ -98,7 +98,13 @@ class Driver {
   }
 
   async elementIsVisible(id) {
-    return this.driver.wait(until.elementLocated(By.id(id)), 1000, 'Could not locate the child element within the time specified');
+    let isError = false;
+    try {
+      await this.driver.wait(until.elementLocated(By.id(id)), 10000, 'Could not locate the child element within the time specified');
+    } catch (err) {
+      isError = true;
+    }
+    return !isError;
   }
 }
 
