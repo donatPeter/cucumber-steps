@@ -24,7 +24,7 @@ class World {
   }
 
   async setup() {
-    this.driver = new Driver(this.config.browser);
+    this.driver = new Driver(this.config);
   }
 
   async cleanup() {

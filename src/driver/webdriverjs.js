@@ -1,11 +1,23 @@
 const webdriver = require('selenium-webdriver');
+const chrome = require('selenium-webdriver/chrome');
+const firefox = require('selenium-webdriver/firefox');
 const { By, until } = require('selenium-webdriver');
 const fs = require('fs');
 
 class Driver {
-  constructor(browser) {
+  constructor(config) {
+    if (config.browser === 'chrome') {
+      this.options = new chrome.Options();
+    } else {
+      this.options = new firefox.Options();
+    }
+
+    if (config.headless) this.options.headless();
+    if (config.mobile) this.options.setMobileEmulation(config.mobile);
+
     this.driver = new webdriver.Builder()
-      .forBrowser(browser)
+      .forBrowser(config.browser)
+      .setChromeOptions(this.options)
       .build();
   }
 
