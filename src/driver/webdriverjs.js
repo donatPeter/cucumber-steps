@@ -93,8 +93,9 @@ class Driver {
     return !isEnabled;
   }
 
-  async selectFromDropdown(id, option) {
-    return this.driver.wait(until.elementLocated(By.id(id)), 10000, 'Could not locate the child element within the time specified').sendKeys(option);
+  async selectFromDropdown(option, id) {
+    const selectElement = await this.driver.wait(until.elementLocated(By.id(id)), 10000, 'Could not locate the child element within the time specified');
+    await selectElement.findElement(webdriver.By.css(`option[value='${option}']`)).click();
   }
 
   async elementIsVisible(id) {

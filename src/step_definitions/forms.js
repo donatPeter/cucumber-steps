@@ -3,8 +3,8 @@ class Forms {
     await this.world.driver.filloutFormFields(hashDataTable);
   }
 
-  static async selectFromDropdown(id, option) {
-    await this.world.driver.selectFromDropdown(id, option);
+  static async selectFromDropdown(option, id) {
+    await this.world.driver.selectFromDropdown(option, id);
   }
 }
 
