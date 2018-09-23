@@ -4,7 +4,7 @@ class Forms {
   }
 
   static async selectFromDropdown(id, option) {
-    await this.world.selectFromDropdown(id, option);
+    await this.world.driver.selectFromDropdown(id, option);
   }
 }
 
