@@ -86,6 +86,12 @@ class Driver {
     });
     return Promise.all(promises);
   }
+
+  async elementIsDisabled(id) {
+    const element = await this.driver.wait(until.elementLocated(By.id(id)), 10000, 'Could not locate the child element within the time specified');
+    const isEnabled = await element.isEnabled();
+    return !isEnabled;
+  }
 }
 
 module.exports = Driver;
