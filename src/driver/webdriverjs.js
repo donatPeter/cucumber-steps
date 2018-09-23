@@ -92,6 +92,14 @@ class Driver {
     const isEnabled = await element.isEnabled();
     return !isEnabled;
   }
+
+  async selectFromDropdown(id, option) {
+    return this.driver.wait(until.elementLocated(By.id(id)), 10000, 'Could not locate the child element within the time specified').sendKeys(option);
+  }
+
+  async elementIsVisible(id) {
+    return this.driver.wait(until.elementLocated(By.id(id)), 1000, 'Could not locate the child element within the time specified');
+  }
 }
 
 module.exports = Driver;
