@@ -14,4 +14,5 @@ class DOMAssertions {
 
 module.exports = [
   [/The HTML element with "([^"]*)" is disabled?/, DOMAssertions.isDisabled],
+  [/The HTML element with "([^"]*)" is enabled?/, DOMAssertions.isEnabled],
 ];
