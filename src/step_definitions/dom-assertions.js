@@ -5,6 +5,11 @@ class DOMAssertions {
     const elementIsDisabled = await this.world.driver.elementIsDisabled(id);
     expect(elementIsDisabled).to.equal(true);
   }
+
+  static async isEnabled(id) {
+    const elementIsDisabled = await this.world.driver.elementIsDisabled(id);
+    expect(elementIsDisabled).to.equal(false);
+  }
 }
 
 module.exports = [
