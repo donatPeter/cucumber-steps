@@ -20,6 +20,11 @@ class DOMAssertions {
     const elementIsVisible = await this.world.driver.elementIsVisible(id);
     expect(elementIsVisible).to.equal(false);
   }
+
+  static async elementTextContainsText(expectation, id) {
+    const elementText = await this.world.driver.elementTextContainsText(expectation, id);
+    expect(elementText).to.equal(expectation);
+  }
 }
 
 module.exports = [
@@ -27,6 +32,7 @@ module.exports = [
   [/The HTML element with "([^"]*)" is enabled?/, DOMAssertions.isEnabled],
   [/The "([^"]*)" element should be visible$/, DOMAssertions.isVisible],
   [/The "([^"]*)" element should not be visible$/, DOMAssertions.isNotVisible],
+  [/I should see "([^"]*)" in the "([^"]*)" element text$/, DOMAssertions.elementTextContainsText],
   // Aliases
   [/The "([^"]*)" element is not visible$/, DOMAssertions.isNotVisible],
   [/The "([^"]*)" element is visible$/, DOMAssertions.isVisible],

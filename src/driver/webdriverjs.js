@@ -107,6 +107,10 @@ class Driver {
     }
     return !isError;
   }
+
+  async elementTextContainsText(id) {
+    return this.driver.wait(until.elementLocated(By.id(id)), 10000, 'Could not locate the child element within the time specified').getText();
+  }
 }
 
 module.exports = Driver;
