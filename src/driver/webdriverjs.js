@@ -15,6 +15,7 @@ class Driver {
 
     if (config.headless) this.options.headless();
     if (config.mobile) this.options.setMobileEmulation(config.mobile);
+    if (config.incognito) this.options.addArguments('---incognito');
 
     this.driver = new webdriver.Builder()
       .forBrowser(config.browser)
@@ -92,7 +93,9 @@ class Driver {
     const promises = [];
     hash.raw().forEach(async ([field, value]) => {
       const arr = field.split('=');
-      promises.push(this.driver.wait(until.elementLocated(By.id(arr[1])), 10000, 'Could not locate the child element within the time specified').sendKeys(value));
+      const replaced = value.replace(/[/]+/g, '|');
+      const random = randexp(replaced);
+      promises.push(this.driver.wait(until.elementLocated(By.id(arr[1])), 10000, 'Could not locate the child element within the time specified').sendKeys(random));
     });
     return Promise.all(promises);
   }
