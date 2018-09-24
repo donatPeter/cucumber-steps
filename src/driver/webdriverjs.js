@@ -3,6 +3,7 @@ const chrome = require('selenium-webdriver/chrome');
 const firefox = require('selenium-webdriver/firefox');
 const { By, until } = require('selenium-webdriver');
 const fs = require('fs');
+const { randexp } = require('randexp');
 
 class Driver {
   constructor(config) {
@@ -79,6 +80,15 @@ class Driver {
   }
 
   async filloutFormFields(hash) {
+    const promises = [];
+    hash.raw().forEach(async ([field, value]) => {
+      const arr = field.split('=');
+      promises.push(this.driver.wait(until.elementLocated(By.id(arr[1])), 10000, 'Could not locate the child element within the time specified').sendKeys(value));
+    });
+    return Promise.all(promises);
+  }
+
+  async filloutFormFieldsWithRandom(hash) {
     const promises = [];
     hash.raw().forEach(async ([field, value]) => {
       const arr = field.split('=');

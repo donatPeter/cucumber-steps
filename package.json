@@ -1,6 +1,6 @@
 {
   "name": "cucumber-steps",
-  "version": "1.4.2",
+  "version": "1.4.3",
   "description": "",
   "main": "src/api.js",
   "scripts": {
@@ -12,6 +12,7 @@
   "dependencies": {
     "chai": "^4.1.2",
     "cucumber-html-reporter": "^4.0.4",
+    "randexp": "^0.5.3",
     "selenium-webdriver": "^4.0.0-alpha.1"
   },
   "devDependencies": {
