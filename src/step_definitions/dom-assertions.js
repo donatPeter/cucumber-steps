@@ -22,7 +22,7 @@ class DOMAssertions {
   }
 
   static async elementTextContainsText(expectation, id) {
-    const elementText = await this.world.driver.elementTextContainsText(expectation, id);
+    const elementText = await this.world.driver.elementTextContainsText(id);
     expect(elementText).to.equal(expectation);
   }
 }
