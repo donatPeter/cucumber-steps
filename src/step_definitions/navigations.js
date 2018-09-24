@@ -1,4 +1,11 @@
+/**
+ * @static
+ * Navigation related steps
+ */
 class Navigations {
+  /**
+   * @param {string} url Url to open
+   */
   static async open(url) {
     this.world.driver.getURL(url);
   }

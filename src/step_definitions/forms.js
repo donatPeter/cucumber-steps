@@ -1,4 +1,17 @@
+/**
+ * @static
+ * Form related steps
+ */
 class Forms {
+  /**
+   * @static
+   * @async
+   * @param {table} hashDataTable 
+   * @param {regexp} regexp I fill in the following:
+   * @example 
+   * And I fill in the following:
+    | id=signin-input-email    | test@infullmobile.com |
+   */
   static async filloutFormFields(hashDataTable) {
     await this.world.driver.filloutFormFields(hashDataTable);
   }

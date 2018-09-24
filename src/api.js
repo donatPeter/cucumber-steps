@@ -3,6 +3,10 @@ const steps = require('./step_definitions/index');
 const Driver = require('./driver/webdriverjs');
 
 class World {
+  /**
+   * 
+   * @param {*} config 
+   */
   constructor(config = {
     browser: 'chrome',
   }) {
