@@ -1,3 +1,4 @@
+const reporter = require('cucumber-html-reporter');
 const steps = require('./step_definitions/index');
 const Driver = require('./driver/webdriverjs');
 
@@ -28,6 +29,7 @@ class World {
   }
 
   async cleanup() {
+    reporter.generate({});
     await this.driver.quitBrowser();
   }
 }
