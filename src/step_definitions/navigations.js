@@ -1,7 +1,19 @@
-const open = async function (url) {
-  this.world.driver.get(url);
-};
+class Navigations {
+  static async open(url) {
+    this.world.driver.getURL(url);
+  }
+
+  static async refresh() {
+    this.world.driver.refresh();
+  }
+
+  static async moveBack() {
+    this.world.driver.moveBack();
+  }
+}
 
 module.exports = [
-  [/Open the "([^"]*)"/, open],
+  [/I open the "([^"]*)"/, Navigations.open],
+  [/I reload the page/, Navigations.refresh],
+  [/I move backward one page/, Navigations.moveBack],
 ];

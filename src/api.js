@@ -1,32 +1,36 @@
-const { Builder } = require('selenium-webdriver');
 const steps = require('./step_definitions/index');
+const Driver = require('./driver/webdriverjs');
 
-function gherkin(cucumber) {
-  steps.forEach(([pattern, fn]) => {
-    cucumber.defineStep(pattern, fn);
-  });
+class World {
+  constructor(config = {
+    browser: 'chrome',
+  }) {
+    this.config = config;
+  }
+
+  static gherkin(cucumber) {
+    steps.forEach(([pattern, fn]) => {
+      cucumber.defineStep(pattern, fn);
+    });
+  }
+
+  hook(cucumber) {
+    const self = this;
+    cucumber.BeforeAll(() => self.setup());
+    cucumber.AfterAll(() => self.cleanup());
+    cucumber.setWorldConstructor(function () {
+      this.world = self;
+    });
+  }
+
+  async setup() {
+    this.driver = new Driver(this.config);
+  }
+
+  async cleanup() {
+    await this.driver.quitBrowser();
+  }
 }
-
-function World(config = {}) {
-  this.config = config;
-}
-
-World.prototype.hook = function (cucumber) {
-  const self = this;
-  cucumber.BeforeAll(() => self.setup());
-  cucumber.AfterAll(() => self.cleanup());
-  cucumber.setWorldConstructor(function () {
-    this.world = self;
-  });
-};
-
-World.prototype.setup = async function () {
-  this.driver = await new Builder().forBrowser('chrome').build();
-};
-
-World.prototype.cleanup = async function () {
-  await this.driver.quit();
-};
 
 module.exports.World = World;
-module.exports.gherkin = gherkin;
+module.exports.gherkin = World.gherkin;

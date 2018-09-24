@@ -1,6 +1,6 @@
 {
   "name": "cucumber-steps",
-  "version": "1.2.0",
+  "version": "1.4.0",
   "description": "",
   "main": "src/api.js",
   "scripts": {
@@ -11,7 +11,6 @@
   "license": "ISC",
   "dependencies": {
     "chai": "^4.1.2",
-    "cucumber": "^5.0.1",
     "selenium-webdriver": "^4.0.0-alpha.1"
   },
   "devDependencies": {
