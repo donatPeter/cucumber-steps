@@ -39,10 +39,7 @@ mobile: {
 
 ## API
 
-- Open the "([^"]*)"
-- I click on the HTML element with the ID "([^"]*)"
-- I should be on "([^"]*)"
-- etc
+https://cucumber-steps-api-doc.firebaseapp.com
 
 
 ## Inspired
