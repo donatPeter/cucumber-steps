@@ -15,10 +15,22 @@ class World {
     });
   }
 
+  static report() {
+    const options = {
+      theme: 'bootstrap',
+      jsonFile: 'report/report.json',
+      output: 'report/report.html',
+      reportSuiteAsScenarios: true,
+      launchReport: true,
+    };
+    reporter.generate(options);
+    return Promise.resolve();
+  }
+
   hook(cucumber) {
     const self = this;
     cucumber.BeforeAll(() => self.setup());
-    cucumber.AfterAll(() => self.cleanup());
+    cucumber.AfterAll(async () => self.cleanup());
     cucumber.setWorldConstructor(function () {
       this.world = self;
     });
@@ -29,17 +41,10 @@ class World {
   }
 
   async cleanup() {
-    const options = {
-      theme: 'bootstrap',
-      jsonFile: 'report/cucumber_report.json',
-      output: 'report/cucumber_report.html',
-      reportSuiteAsScenarios: true,
-      launchReport: true,
-    };
-    reporter.generate(options);
-    await this.driver.quitBrowser();
+    return this.driver.quitBrowser();
   }
 }
 
 module.exports.World = World;
 module.exports.gherkin = World.gherkin;
+module.exports.report = World.report;
