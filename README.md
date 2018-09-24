@@ -20,8 +20,18 @@ world.gherkin(cucumber);
 const cucumber = require('cucumber');
 const world = require('cucumber-steps');
 
-const driver = new world.World();
+const driver = new world.World(options);
 driver.hook(cucumber);
+```
+
+Possible configurations during initialization (options parameter):
+
+```
+browser: string (supported: 'chrome' or 'firefox')
+headless: boolean
+mobile: {
+  deviceName: string (e.g.: 'Pixel 2', 'Galaxy S5', etc)
+}
 ```
 
 5) Run the tests by the `npx cucumber-js` command
@@ -32,6 +42,7 @@ driver.hook(cucumber);
 - Open the "([^"]*)"
 - I click on the HTML element with the ID "([^"]*)"
 - I should be on "([^"]*)"
+- etc
 
 
 ## Inspired
