@@ -14,7 +14,7 @@ class URLAssertions {
    * Then I should be on "http://localhost:3000/checkout"
    */
   static async isCurrentURLEqual(url) {
-    const currentURL = await this.world.driver.getCurrentURL();
+    const currentURL = await this.world.driver.isCurrentURLEqual();
     expect(currentURL).to.equal(url);
   }
 }
