@@ -4,6 +4,7 @@ const firefox = require('selenium-webdriver/firefox');
 const { By, until } = require('selenium-webdriver');
 const fs = require('fs');
 const { randexp } = require('randexp');
+const Errors = require('../utils/errors');
 
 class Driver {
   constructor(config) {
@@ -24,7 +25,7 @@ class Driver {
   }
 
   async clickOnElement(id) {
-    await this.driver.wait(until.elementLocated(By.id(id)), 10000, 'Could not locate the child element within the time specified');
+    await this.driver.wait(until.elementLocated(By.id(id)), 10000, Errors.ACTION.COULD_NOT_LOCATE);
     return this.driver.findElement(By.id(id)).click();
   }
 
@@ -67,12 +68,12 @@ class Driver {
   }
 
   async hoverOverElement(id) {
-    const element = await this.driver.wait(until.elementLocated(By.id(id)), 10000, 'Could not locate the child element within the time specified');
+    const element = await this.driver.wait(until.elementLocated(By.id(id)), 10000, Errors.ACTION.COULD_NOT_LOCATE);
     return this.driver.actions().mouseMove(element).perform();
   }
 
   async sendKeyToElement(id, key) {
-    const element = await this.driver.wait(until.elementLocated(By.id(id)), 10000, 'Could not locate the child element within the time specified');
+    const element = await this.driver.wait(until.elementLocated(By.id(id)), 10000, Errors.ACTION.COULD_NOT_LOCATE);
     return element.sendKeys(key);
   }
 
@@ -80,7 +81,7 @@ class Driver {
     const promises = [];
     hash.raw().forEach(async ([field, value]) => {
       const arr = field.split('=');
-      promises.push(this.driver.wait(until.elementLocated(By.id(arr[1])), 10000, 'Could not locate the child element within the time specified').sendKeys(value));
+      promises.push(this.driver.wait(until.elementLocated(By.id(arr[1])), 10000, Errors.ACTION.COULD_NOT_LOCATE).sendKeys(value));
     });
     return Promise.all(promises);
   }
@@ -91,26 +92,26 @@ class Driver {
       const arr = field.split('=');
       const replaced = value.replace(/[/]+/g, '|');
       const random = randexp(replaced);
-      promises.push(this.driver.wait(until.elementLocated(By.id(arr[1])), 10000, 'Could not locate the child element within the time specified').sendKeys(random));
+      promises.push(this.driver.wait(until.elementLocated(By.id(arr[1])), 10000, Errors.ACTION.COULD_NOT_LOCATE).sendKeys(random));
     });
     return Promise.all(promises);
   }
 
   async isElementDisabled(id) {
-    const element = await this.driver.wait(until.elementLocated(By.id(id)), 10000, 'Could not locate the child element within the time specified');
+    const element = await this.driver.wait(until.elementLocated(By.id(id)), 10000, Errors.ACTION.COULD_NOT_LOCATE);
     const isEnabled = await element.isEnabled();
     return !isEnabled;
   }
 
   async selectFromDropdown(option, id) {
-    const selectElement = await this.driver.wait(until.elementLocated(By.id(id)), 10000, 'Could not locate the child element within the time specified');
+    const selectElement = await this.driver.wait(until.elementLocated(By.id(id)), 10000, Errors.ACTION.COULD_NOT_LOCATE);
     await selectElement.findElement(webdriver.By.css(`option[value='${option}']`)).click();
   }
 
   async isElementVisible(id) {
     let isError = false;
     try {
-      await this.driver.wait(until.elementLocated(By.id(id)), 10000, 'Could not locate the child element within the time specified');
+      await this.driver.wait(until.elementLocated(By.id(id)), 10000, Errors.ACTION.COULD_NOT_LOCATE);
     } catch (err) {
       isError = true;
     }
@@ -118,7 +119,7 @@ class Driver {
   }
 
   async doesElementTextContainsText(id) {
-    return this.driver.wait(until.elementLocated(By.id(id)), 10000, 'Could not locate the child element within the time specified').getText();
+    return this.driver.wait(until.elementLocated(By.id(id)), 10000, Errors.ACTION.COULD_NOT_LOCATE).getText();
   }
 }
 

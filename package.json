@@ -1,6 +1,6 @@
 {
   "name": "cucumber-steps",
-  "version": "1.4.8",
+  "version": "1.4.9",
   "description": "",
   "main": "src/api.js",
   "scripts": {
