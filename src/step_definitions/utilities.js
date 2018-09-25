@@ -1,9 +1,24 @@
+/**
+ * @static
+ * Utilities steps
+ */
 class Utilities {
-  static async wait(sec) {
+  /**
+   * @param {*} sec 
+   * @example
+   * I wait (\d+) seconds?
+   * 
+   * I wait 5 seconds
+   */
+  static async waitForSeconds(sec) {
     return this.world.driver.waitForSeconds(sec);
   }
 
-  static async screenshot() {
+  /**
+   * @example
+   * I take a screenshot
+   */
+  static async takeScreenshot() {
     return this.world.driver.screenshot();
   }
 }

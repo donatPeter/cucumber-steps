@@ -1,7 +1,19 @@
 const { expect } = require('chai');
 
+/**
+ * @static
+ * URL assertion related steps
+ */
 class URLAssertions {
-  static async isEqual(url) {
+  /**
+   * 
+   * @param {string} url The URL to check
+   * @example
+   * I should be on "([^"]*)"
+   * 
+   * Then I should be on "http://localhost:3000/checkout"
+   */
+  static async isCurrentURLEqual(url) {
     const currentURL = await this.world.driver.getCurrentURL();
     expect(currentURL).to.equal(url);
   }
