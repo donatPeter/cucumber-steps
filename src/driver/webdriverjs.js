@@ -23,16 +23,12 @@ class Driver {
       .build();
   }
 
-  get() {
-    return this.driver;
-  }
-
-  async clickOn(id) {
+  async clickOnElement(id) {
     await this.driver.wait(until.elementLocated(By.id(id)), 10000, 'Could not locate the child element within the time specified');
     return this.driver.findElement(By.id(id)).click();
   }
 
-  async getCurrentURL() {
+  async isCurrentURLEqual() {
     return this.driver.getCurrentUrl();
   }
 
@@ -40,7 +36,7 @@ class Driver {
     return this.driver.quit();
   }
 
-  async getURL(url) {
+  async openUrl(url) {
     return this.driver.get(url);
   }
 
@@ -49,7 +45,7 @@ class Driver {
     return this.driver.sleep(milliSec);
   }
 
-  async screenshot() {
+  async takeScreenshot() {
     const pic = await this.driver.takeScreenshot();
     const currentPath = process.cwd();
     const targetPath = `${currentPath}/screenshots/`;
@@ -62,20 +58,20 @@ class Driver {
     }
   }
 
-  async refresh() {
+  async refreshPage() {
     return this.driver.navigate().refresh();
   }
 
-  async moveBack() {
+  async navigateBack() {
     return this.driver.navigate().back();
   }
 
-  async hoverOver(id) {
+  async hoverOverElement(id) {
     const element = await this.driver.wait(until.elementLocated(By.id(id)), 10000, 'Could not locate the child element within the time specified');
     return this.driver.actions().mouseMove(element).perform();
   }
 
-  async sendKey(id, key) {
+  async sendKeyToElement(id, key) {
     const element = await this.driver.wait(until.elementLocated(By.id(id)), 10000, 'Could not locate the child element within the time specified');
     return element.sendKeys(key);
   }
@@ -100,7 +96,7 @@ class Driver {
     return Promise.all(promises);
   }
 
-  async elementIsDisabled(id) {
+  async isElementDisabled(id) {
     const element = await this.driver.wait(until.elementLocated(By.id(id)), 10000, 'Could not locate the child element within the time specified');
     const isEnabled = await element.isEnabled();
     return !isEnabled;
@@ -111,7 +107,7 @@ class Driver {
     await selectElement.findElement(webdriver.By.css(`option[value='${option}']`)).click();
   }
 
-  async elementIsVisible(id) {
+  async isElementVisible(id) {
     let isError = false;
     try {
       await this.driver.wait(until.elementLocated(By.id(id)), 10000, 'Could not locate the child element within the time specified');
@@ -121,7 +117,7 @@ class Driver {
     return !isError;
   }
 
-  async elementTextContainsText(id) {
+  async doesElementTextContainsText(id) {
     return this.driver.wait(until.elementLocated(By.id(id)), 10000, 'Could not locate the child element within the time specified').getText();
   }
 }

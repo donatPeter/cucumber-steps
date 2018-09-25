@@ -14,7 +14,7 @@ class DOMAssertions {
    * Then The HTML element with "signin-button-id" is disabled
    */
   static async isElementDisabled(id) {
-    const elementIsDisabled = await this.world.driver.elementIsDisabled(id);
+    const elementIsDisabled = await this.world.driver.isElementDisabled(id);
     expect(elementIsDisabled).to.equal(true);
   }
 
@@ -27,8 +27,8 @@ class DOMAssertions {
    * Then The HTML element with "signin-button-id" is enabled
    */
   static async isElementEnabled(id) {
-    const elementIsDisabled = await this.world.driver.elementIsDisabled(id);
-    expect(elementIsDisabled).to.equal(false);
+    const elementIsEnabled = await this.world.driver.isElementDisabled(id);
+    expect(elementIsEnabled).to.equal(false);
   }
 
   /**
@@ -41,7 +41,7 @@ class DOMAssertions {
    * Then The "logout-button-id" element is visible
    */
   static async isElementVisible(id) {
-    const elementIsVisible = await this.world.driver.elementIsVisible(id);
+    const elementIsVisible = await this.world.driver.isElementVisible(id);
     expect(elementIsVisible).to.equal(true);
   }
 
@@ -56,7 +56,7 @@ class DOMAssertions {
    * 
    */
   static async isElementNotVisible(id) {
-    const elementIsVisible = await this.world.driver.elementIsVisible(id);
+    const elementIsVisible = await this.world.driver.isElementVisible(id);
     expect(elementIsVisible).to.equal(false);
   }
 
@@ -70,18 +70,18 @@ class DOMAssertions {
    * Then I should see "Sign up" in the "signup-button-id" element text
    */
   static async doesElementTextContainsText(expectation, id) {
-    const elementText = await this.world.driver.elementTextContainsText(id);
+    const elementText = await this.world.driver.doesElementTextContainsText(id);
     expect(elementText).to.equal(expectation);
   }
 }
 
 module.exports = [
-  [/The HTML element with "([^"]*)" is disabled?/, DOMAssertions.isDisabled],
-  [/The HTML element with "([^"]*)" is enabled?/, DOMAssertions.isEnabled],
-  [/The "([^"]*)" element should be visible$/, DOMAssertions.isVisible],
-  [/The "([^"]*)" element should not be visible$/, DOMAssertions.isNotVisible],
-  [/I should see "([^"]*)" in the "([^"]*)" element text$/, DOMAssertions.elementTextContainsText],
+  [/The HTML element with "([^"]*)" is disabled?/, DOMAssertions.isElementDisabled],
+  [/The HTML element with "([^"]*)" is enabled?/, DOMAssertions.isElementEnabled],
+  [/The "([^"]*)" element should be visible$/, DOMAssertions.isElementVisible],
+  [/The "([^"]*)" element should not be visible$/, DOMAssertions.isElementNotVisible],
+  [/I should see "([^"]*)" in the "([^"]*)" element text$/, DOMAssertions.doesElementTextContainsText],
   // Aliases
-  [/The "([^"]*)" element is not visible$/, DOMAssertions.isNotVisible],
-  [/The "([^"]*)" element is visible$/, DOMAssertions.isVisible],
+  [/The "([^"]*)" element is not visible$/, DOMAssertions.isElementNotVisible],
+  [/The "([^"]*)" element is visible$/, DOMAssertions.isElementVisible],
 ];

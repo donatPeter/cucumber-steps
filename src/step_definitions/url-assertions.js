@@ -20,5 +20,5 @@ class URLAssertions {
 }
 
 module.exports = [
-  [/I should be on "([^"]*)"/, URLAssertions.isEqual],
+  [/I should be on "([^"]*)"/, URLAssertions.isCurrentURLEqual],
 ];

@@ -24,6 +24,6 @@ class Utilities {
 }
 
 module.exports = [
-  [/I wait (\d+) seconds?/, Utilities.wait],
-  [/I take a screenshot/, Utilities.screenshot],
+  [/I wait (\d+) seconds?/, Utilities.waitForSeconds],
+  [/I take a screenshot/, Utilities.takeScreenshot],
 ];

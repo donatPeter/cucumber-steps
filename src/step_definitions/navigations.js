@@ -11,7 +11,7 @@ class Navigations {
    * Given I open the "http://localhost:3000" URL
    */
   static async openUrl(url) {
-    this.world.driver.getURL(url);
+    this.world.driver.openUrl(url);
   }
 
   /**
@@ -19,7 +19,7 @@ class Navigations {
    * I reload the page
    */
   static async refreshPage() {
-    this.world.driver.refresh();
+    this.world.driver.refreshPage();
   }
 
   /**
@@ -27,12 +27,12 @@ class Navigations {
    * I move backward one page
    */
   static async navigateBack() {
-    this.world.driver.moveBack();
+    this.world.driver.navigateBack();
   }
 }
 
 module.exports = [
-  [/I open the "([^"]*)"/, Navigations.open],
-  [/I reload the page/, Navigations.refresh],
-  [/I move backward one page/, Navigations.moveBack],
+  [/I open the "([^"]*)"/, Navigations.openUrl],
+  [/I reload the page/, Navigations.refreshPage],
+  [/I move backward one page/, Navigations.navigateBack],
 ];

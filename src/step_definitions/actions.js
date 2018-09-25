@@ -11,7 +11,7 @@ class Actions {
    * I click on the HTML element with the ID "button-id"
    */
   static async clickOnElement(id) {
-    await this.world.driver.clickOn(id);
+    await this.world.driver.clickOnElement(id);
   }
 
   /**
@@ -22,7 +22,7 @@ class Actions {
    * I hover over the HTML element with the ID "button-id"
    */
   static async hoverOverElement(id) {
-    await this.world.driver.hoverOver(id);
+    await this.world.driver.hoverOverElement(id);
   }
 
   /**
@@ -34,12 +34,12 @@ class Actions {
    * I send key "Hello World!" in "text-box-id" element
    */
   static async sendKeyToElement(id, key) {
-    await this.world.driver.sendKey(id, key);
+    await this.world.driver.sendKeyToElement(id, key);
   }
 }
 
 module.exports = [
-  [/I click on the HTML element with the ID "([^"]*)"/, Actions.click],
-  [/I hover over the HTML element with the ID "([^"]*)"/, Actions.hoverOver],
-  [/I send key "([^"]*)" in "([^"]*)" element/, Actions.sendKey],
+  [/I click on the HTML element with the ID "([^"]*)"/, Actions.clickOnElement],
+  [/I hover over the HTML element with the ID "([^"]*)"/, Actions.hoverOverElement],
+  [/I send key "([^"]*)" in "([^"]*)" element/, Actions.sendKeyToElement],
 ];
